@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trip Expense Splitter</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <button class="info-button" type="button" aria-label="Rounding rule: extra cent goes to the payer." title="Rounding rule: extra cent goes to the payer.">i</button>
+    <div class="page">
+      <header class="page-header">
+        <h1>Trip Expense Splitter</h1>
+        <p>Track shared travel expenses and settle up in seconds.</p>
+      </header>
+
+      <main class="grid">
+        <section class="panel" aria-labelledby="trips-title">
+          <div class="panel-header">
+            <h2 id="trips-title">Trips</h2>
+            <div class="active-trip" id="active-trip-label">No trip selected</div>
+          </div>
+          <ul class="list" id="trip-list"></ul>
+          <form class="stack" id="trip-form">
+            <label class="field">
+              <span>Trip name</span>
+              <input type="text" id="trip-name" placeholder="e.g. Tokyo 2025" required>
+            </label>
+            <button type="submit">Create trip</button>
+          </form>
+          <div class="row">
+            <button type="button" class="secondary" id="reset-trip">Reset trip</button>
+            <button type="button" class="ghost" id="clear-data">Clear all data</button>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="people-title">
+          <div class="panel-header">
+            <h2 id="people-title">People</h2>
+            <p class="muted">Weights affect weighted splits.</p>
+          </div>
+          <div id="people-list" class="stack"></div>
+          <form class="stack" id="person-form">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" id="person-name" placeholder="Person name" required>
+            </label>
+            <button type="submit">Add person</button>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="expenses-title">
+          <div class="panel-header">
+            <h2 id="expenses-title">Expenses</h2>
+            <p class="muted">Select who participated in each expense.</p>
+          </div>
+          <form class="stack" id="expense-form">
+            <label class="field">
+              <span>Expense name</span>
+              <input type="text" id="expense-name" placeholder="e.g. Dinner" required>
+            </label>
+            <label class="field">
+              <span>Payer</span>
+              <select id="payer-select" required></select>
+            </label>
+            <label class="field">
+              <span>Amount</span>
+              <input type="number" id="expense-amount" min="0.01" step="0.01" placeholder="0.00" required>
+            </label>
+            <label class="field">
+              <span>Split mode</span>
+              <select id="split-mode">
+                <option value="equal">Equal</option>
+                <option value="weighted">Weighted</option>
+              </select>
+            </label>
+            <div class="stack" id="participants-list"></div>
+            <button type="submit">Add expense</button>
+          </form>
+          <div class="stack" id="expense-list"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="results-title">
+          <div class="panel-header">
+            <h2 id="results-title">Results</h2>
+            <p class="muted">Balances and settlement suggestions.</p>
+          </div>
+          <div class="stack">
+            <table class="table" id="balances-table"></table>
+            <div class="stack" id="settle-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
